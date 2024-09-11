@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Data Structures and Algorithms" preserve-order="true">
+    <listeners>
+<!--        <listener class-name="com.Utilities.ReportingAllure"/>-->
+    </listeners>
+
+    <test name="API Regression Testing" preserve-order="true">
+
+<!--        <groups>-->
+<!--            <run>-->
+<!--                <include name="BaseTest"/>-->
+<!--            </run>-->
+<!--        </groups>-->
+
+
+        <classes>
+
+            <class name="com.BinarySearch"/>
+            <class name="com.ListVsArray"/>
+            <class name="com.Recursion"/>
+            <class name="com.SortArr"/>
+
+
+        </classes>
+    </test>
+
+</suite>
