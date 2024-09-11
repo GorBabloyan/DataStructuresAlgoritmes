@@ -29,7 +29,7 @@ public class Base {
         logger = Logger.getLogger("DataStructuresAlgorithms");
         PropertyConfigurator.configure("log4j.properties");
 
-        logger.info("<<<<<<<<<<<<<<<<<<<<<<<<< Test Suite Started  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>  ");
+        logger.info("<<<<<<<<<<< Test Suite Started  >>>>>>>>>>>  ");
         logger.info("");
 
     }
@@ -38,7 +38,8 @@ public class Base {
     @AfterSuite
     public void tearDownSuite() {
 
-        logger.info("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  Test Suite finished  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  ");
+        logger.info("");
+        logger.info("<<<<<<<<<<<  Test Suite finished  >>>>>>>>>>>");
 
     }
 

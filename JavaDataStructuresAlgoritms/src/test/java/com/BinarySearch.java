@@ -34,7 +34,7 @@ public class BinarySearch  {
             middle = (low + high)/2;
             guess = arr[middle];
             if (guess == value){
-                System.out.println("Searched item was find after " + stepsCount + " Steps its index = " + middle);
+                System.out.println("Searched item was found after " + stepsCount + " Steps, its index = " + middle);
                 System.out.println();
                 return middle;
             }
@@ -54,8 +54,7 @@ public class BinarySearch  {
 
 
     public int searchBinaryPredefined(int[] arr, int value){
-         int result = Arrays.binarySearch(arr, value);
-         return result;
+        return Arrays.binarySearch(arr, value);
     }
 
 
