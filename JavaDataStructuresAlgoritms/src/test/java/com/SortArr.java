@@ -14,14 +14,10 @@ public class SortArr extends Base {
     public void sortArrayJava(){
 
         Integer[] numbers = {5, 2, 8, 1, 4};
-
         // Sort the array in descending order
         Arrays.sort(numbers);
-
         // Print the sorted array
         System.out.println("Sorted array: " + Arrays.toString(numbers));
-
-
     }
 
     @Test
@@ -34,7 +30,6 @@ public class SortArr extends Base {
 
         // Print the sorted array
         System.out.println("Sorted array: " + Arrays.toString(numbers));
-
 
     }
 
@@ -69,7 +64,6 @@ public class SortArr extends Base {
             System.out.println("smallest " +smallest);
             sortedArray[j] = smallest;
         }
-
         return sortedArray;
     }
 
