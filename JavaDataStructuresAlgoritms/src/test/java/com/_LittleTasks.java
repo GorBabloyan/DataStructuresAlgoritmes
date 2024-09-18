@@ -1,9 +1,8 @@
 package com;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.annotations.Test;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.util.*;
 
 public class _LittleTasks extends Base {
@@ -580,6 +579,8 @@ public class _LittleTasks extends Base {
         return triangle;
     }
 
+
+
     @Test
     public void printPascalsTriangle2Run() {
         int numRows = 5; // Number of rows to generate
@@ -764,15 +765,260 @@ public class _LittleTasks extends Base {
     //Find the sum of Digits of number   (24)
     @Test
     public void findSumOfDigitsRun() {
-        findSumOfDigits();
+        int num = 1254;
+        findSumOfDigits(num);
+        findSumOfDigits2(num);
+    }
+
+    public void findSumOfDigits(int num) {
+
+        String numStr = String.valueOf(num);
+        char[] arr = numStr.toCharArray();
+        int total = 0;
+        for (int i=0; i<arr.length;i++){
+            total += Integer.parseInt(String.valueOf(arr[i]));
+        }
+        System.out.println("Numbers Digits sum = " + total);
 
     }
 
-    public void findSumOfDigits() {
+
+    public void findSumOfDigits2(int num) {
+        int total = 0;
+        int number = num;
+        while (number!=0){
+            total += number%10;
+            number = number/10;
+        }
+        System.out.println("Numbers Digits sum = " + total);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //Count the Occurrences Of a Character in a String  (27)
+    @Test
+    public void countCharacterRun() {
+        String word = "automation";
+        char ch = 'a';
+        countCharacter(word,ch);
+    }
+
+    public void countCharacter(String word, char ch) {
+
+        int count = 0;
+        for (char c : word.toCharArray()){
+            if (c == ch){
+                count++;
+            }
+        }
+        System.out.println("Char: " + ch + " Occurrences in String: " + word + " = " + count);
+    }
+
+
+    //Find the first non-Repeated Character in a String
+    @Test
+    public void findFirstNonRepeatedCharacterRun() {
+        String word = "automation";
+        findFirstNonRepeatedCharacter(word);
+    }
+
+    public void findFirstNonRepeatedCharacter(String word) {
+
+        for (char c : word.toCharArray()){
+            int count = 0;
+            for (int i=0;i<word.toCharArray().length;i++){
+                if (c==word.toCharArray()[i]){
+                    count++;
+                }
+            }
+            if (count==1){
+                System.out.println("First Non-Repeated Character is " + c);
+                break;
+            }
+        }
+    }
+
+
+
+    //Remove all whiteSpaces from a String
+    @Test
+    public void removeWhiteSpacesRun() {
+
+        String str = " Hello World ";
+
+        System.out.println("String >>>"  + str + "<<< without white spaces >>>" + removeWhiteSpaces(str) + "<<<");
+    }
+
+    public String removeWhiteSpaces(String str) {
+
+        return str.replace(" ","");
+
+
+    }
+
+
+    //Find common elements in Two arrays
+    @Test
+    public void commonElementsInArraysRun() {
+
+        int[] arr1 = {6,1,2,0,12,1,3,4,5,3};
+        int[] arr2 = {6,3,4,5,7,8,9,0};
+        commonElementsInArrays(arr1,arr2);
+    }
+
+    public void commonElementsInArrays(int[] arr1,int[] arr2) {
+
+//        HashSet<Integer> commonArr = new HashSet<>() ;       //unique elements + ordering
+        Set<Integer> commonArr = new LinkedHashSet<>() ;       //unique elements
+//        ArrayList<Integer> commonArr = new ArrayList<>() ;   //ordering
+//        LinkedList<Integer> commonArr = new LinkedList<>() ; //No order no Uniqueness
+        for (int a : arr1){
+            for (int b : arr2){
+                if (a==b){
+                    commonArr.add(a);
+                }
+            }
+        }
+        System.out.println("Common elements: " + commonArr);
+    }
+
+
+    //Find the factorial of a Number using Recursion
+    @Test
+    public void factorialOfNumberUsingRecursionRun() {
+        int num = 10;
+        factorialOfNumberUsingRecursion(num);
+        System.out.println("factorial of Num: " + num + " = " + factorial);
+    }
+
+    int n ;
+    int factorial = 1;
+    public void  factorialOfNumberUsingRecursion(int num) {
+
+        n = num;
+        while(n!=0){
+            factorial= factorial * num;
+            n--;
+            factorialOfNumberUsingRecursion(n);
+        }
+    }
+
+
+    //Generate random numbers  (32)
+    @Test
+    public void generateRandomNumbersRun() {
+        int i=0;
+        while (i<20){
+            System.out.println(generateRandomNumbers(1));
+            i++;
+        }
+
+
+    }
+
+    public int  generateRandomNumbers(int n) {
+
+        return -Integer.parseInt(RandomStringUtils.randomNumeric(n));
+
+    }
+
+
+
+
+    //check if year is leap  (33)
+    @Test
+    public void isLeapYearRun() {
+
+    }
+
+    public void   isLeapYear(int n) {
+
+
+    }
+
+
+
+    //Find sum of first N natural numbers (34)
+    @Test
+    public void sumOfNaturalNumbersRun() {
 
 
 
     }
+
+    public void   sumOfNaturalNumbers(int n) {
+
+
+    }
+
+
+
+    //Implement a simple login system (35)
+    @Test
+    public void simpleLoginSystemRun() {
+
+    }
+
+    public int simpleLoginSystem(int n) {
+
+        return -Integer.parseInt(RandomStringUtils.randomNumeric(n));
+
+    }
+
+
+    //Check if string contains another string (36)
+    @Test
+    public void stringContainsOtherStringRun() {
+
+    }
+
+    public int stringContainsOtherString(int n) {
+
+        return -Integer.parseInt(RandomStringUtils.randomNumeric(n));
+
+    }
+
+
+    //find a maximum Occurring character in a String (37)
+    @Test
+    public void maxOccurringCharRun() {
+
+    }
+
+    public int maxOccurringChar(int n) {
+
+        return -Integer.parseInt(RandomStringUtils.randomNumeric(n));
+
+    }
+
+    //Bubble sort (38)
+    @Test
+    public void bubbleSortRun() {
+
+    }
+
+    public int  bubbleSort(int n) {
+
+        return -Integer.parseInt(RandomStringUtils.randomNumeric(n));
+
+    }
+
+
+
 
 
 }
