@@ -922,20 +922,28 @@ public class _LittleTasks extends Base {
     }
 
     public boolean isLeapYear(int year) {
+//
+//        if (year % 4 == 0) {
+//            if (year % 100 == 0) {
+//                if (year % 400 == 0) {
+//                    return true;
+//                } else {
+//                    return false;
+//                }
+//            }
+//            return true;
+//        } else {
+//            return false;
+//        }
 
-        if (year % 4 == 0) {
-            if (year % 100 == 0) {
-                if (year % 400 == 0) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-            return true;
-        } else {
-            return false;
+        boolean isLeap;
+        if ((year%4==0&&year%100!=0)||(year%400==0)){
+            isLeap=true;
+        }else {
+            isLeap=false;
         }
 
+        return isLeap;
     }
 
 
