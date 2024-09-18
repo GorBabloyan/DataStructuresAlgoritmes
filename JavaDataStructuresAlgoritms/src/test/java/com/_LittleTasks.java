@@ -2,6 +2,8 @@ package com;
 
 import org.testng.annotations.Test;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.*;
 
 public class _LittleTasks extends Base {
@@ -493,7 +495,6 @@ public class _LittleTasks extends Base {
     }
 
 
-
     //Swap two numbers
     @Test
     public void swapTwoNumbersRun() {
@@ -506,7 +507,7 @@ public class _LittleTasks extends Base {
         int b = 17;
         a = a + b;
         b = a - b;
-        a = a - b ;
+        a = a - b;
 
 //        a = a * b;  // a = 2 b = 3  --> a = 6
 //        b = a / b;  // b = 6/3=2
@@ -516,133 +517,247 @@ public class _LittleTasks extends Base {
         System.out.println("a : " + a + "  b : " + b);
 
     }
-
-
-
 
 
     //Print Pascals Triangle  >>>>>>>>>>>>>>>>>>>>>>>>>>
     @Test
     public void printPascalsTriangleRun() {
-        printPascalsTriangle();
+        printPascalsTriangle(4);
 
     }
 
-    public void printPascalsTriangle() {
-        int a = -5;
-        int b = 17;
-        a = a + b;
-        b = a - b;
-        a = a - b ;
+    public void printPascalsTriangle(int rowsCount) {
 
-//        a = a * b;  // a = 2 b = 3  --> a = 6
-//        b = a / b;  // b = 6/3=2
-//        a = a / b ; // a = 6/2=3
+        for (int i = 1; i < rowsCount; i++) {
+            int num = 1;
+            System.out.format("%" + (rowsCount - i) * 2 + "s", "");
+            for (int j = 0; j <= i; j++) {
+                System.out.format("%4d", num);
+                num = num * (i - j) / (j + 1);
+            }
+
+            System.out.println();
 
 
-        System.out.println("a : " + a + "  b : " + b);
-
+        }
     }
 
+    // Function to generate Pascal's Triangle up to the given number of rows
+    public static List<List<Integer>> printPascalsTriangle2(int numRows) {
+        List<List<Integer>> triangle = new ArrayList<>();
+
+        // Base case: If no rows are requested, return an empty list
+        if (numRows == 0) {
+            return triangle;
+        }
+
+        // First row is always [1]
+        List<Integer> firstRow = new ArrayList<>();
+        firstRow.add(1);
+        triangle.add(firstRow);
+
+        // Generate the subsequent rows
+        for (int i = 1; i < numRows; i++) {
+            List<Integer> prevRow = triangle.get(i - 1); // Get the previous row
+            List<Integer> currentRow = new ArrayList<>();
+
+            // First element of each row is always 1
+            currentRow.add(1);
+
+            // Calculate the inner elements as the sum of the two numbers above
+            for (int j = 1; j < i; j++) {
+                int num = prevRow.get(j - 1) + prevRow.get(j);
+                currentRow.add(num);
+            }
+
+            // Last element of each row is always 1
+            currentRow.add(1);
+
+            // Add the current row to the triangle
+            triangle.add(currentRow);
+        }
+
+        return triangle;
+    }
+
+    @Test
+    public void printPascalsTriangle2Run() {
+        int numRows = 5; // Number of rows to generate
+        List<List<Integer>> triangle = printPascalsTriangle2(numRows);
+
+        // Print Pascal's Triangle
+        for (List<Integer> row : triangle) {
+            System.out.println(row);
+        }
+    }
 
 
     //Find the missing Number in Array
     @Test
     public void findMissingNumRun() {
-        findMissingNumR();
+        int[] arr = {8, 4, 5, 1, 2, 6};
+        findMissingNumR(arr);
+        findMissingNums(arr);
+    }
+
+    public void findMissingNumR(int[] arr) {
+
+        int n = arr.length + 1; // 6
+        int total = n * (n + 1) / 2;  // 21
+
+        for (int num : arr) {
+            total -= num;  // 10 - 1 -2 - 4
+        }
+        System.out.println(total);
 
     }
 
-    public void findMissingNumR() {
-        int a = -5;
-        int b = 17;
-        a = a + b;
-        b = a - b;
-        a = a - b ;
+    public void findMissingNums(int[] arr) {
 
-//        a = a * b;  // a = 2 b = 3  --> a = 6
-//        b = a / b;  // b = 6/3=2
-//        a = a / b ; // a = 6/2=3
+        List<Integer> arrList = new ArrayList<>();
+        for (int a : arr) {
+            arrList.add(a);
+        }
 
 
-        System.out.println("a : " + a + "  b : " + b);
+        for (int i = 1; i <= arrList.size() + 1; i++) {
+            if (!arrList.contains(i)) {
+                System.out.println("Missing element: " + i);
+//                break;
+            }
+
+
+        }
+
 
     }
-
 
 
     //Convert decimal to Binary
     @Test
     public void convertDecimalToBinaryRun() {
-        convertDecimalToBinary();
+        int num = 158;
+        convertDecimalToBinary(num);
 
     }
 
-    public void convertDecimalToBinary() {
-        int a = -5;
-        int b = 17;
-        a = a + b;
-        b = a - b;
-        a = a - b ;
+    public void convertDecimalToBinary(int num) {
 
-//        a = a * b;  // a = 2 b = 3  --> a = 6
-//        b = a / b;  // b = 6/3=2
-//        a = a / b ; // a = 6/2=3
-
-
-        System.out.println("a : " + a + "  b : " + b);
-
+        String binary = Integer.toBinaryString(num);
+        System.out.println("Binary: " + binary);
     }
 
 
-
-    //Check for Perfect Number
+    //Check for Perfect Number   //The divisors of 28 (excluding 28 itself) are 1, 2, 4, 7, and 14, and: 1 + 2 + 4 + 7 + 14 = 28
     @Test
     public void checkForPerfectNumberRun() {
-        checkForPerfectNumber();
+        int num = 28; //28
+        checkForPerfectNumber(num);
 
     }
 
-    public void checkForPerfectNumber() {
-        int a = -5;
-        int b = 17;
-        a = a + b;
-        b = a - b;
-        a = a - b ;
+    public void checkForPerfectNumber(int num) {
 
-//        a = a * b;  // a = 2 b = 3  --> a = 6
-//        b = a / b;  // b = 6/3=2
-//        a = a / b ; // a = 6/2=3
+        int sum = 0;
 
+        for (int i = 1; i < num; i++) {
+            if (num % i == 0) {
+                sum += i;
+            }
+        }
+        if (sum == num) {
+            System.out.println(num + " Is Perfect number");
+        } else {
+            System.out.println(num + " Is Not Perfect number");
+        }
 
-        System.out.println("a : " + a + "  b : " + b);
 
     }
-
 
 
     //Simple Calculator
     @Test
     public void simpleCalculatorRun() {
-        simpleCalculator();
+//        simpleCalculator();
+        simpleScanner();
+    }
+
+    public static void main(String[] args) {
+//        Scanner scanner = new Scanner(System.in);
+//        System.out.println("Please enter something:");
+//
+//        String input = scanner.nextLine();
+//        System.out.println("You entered: " + input);
+//
+//        scanner.close();
+                simpleCalculator();
+
+    }
+    public void simpleScanner() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please enter something:");
+
+        String input = scanner.next();
+        System.out.println("You entered: " + input);
+
+        scanner.close();
+
 
     }
 
-    public void simpleCalculator() {
-        int a = -5;
-        int b = 17;
-        a = a + b;
-        b = a - b;
-        a = a - b ;
 
-//        a = a * b;  // a = 2 b = 3  --> a = 6
-//        b = a / b;  // b = 6/3=2
-//        a = a / b ; // a = 6/2=3
+    public static void simpleCalculator() {
+        Scanner scanner = new Scanner(System.in);
 
+        while (true) {
+            System.out.println("Enter first number");
+            double num1 = Double.parseDouble(scanner.nextLine());
 
-        System.out.println("a : " + a + "  b : " + b);
+            System.out.println("Enter Operation (+, -, /, * or 'close' to exit)");
+            String operation = scanner.nextLine();
 
+            if (operation.equals("close")) {
+                break;
+            }
+            System.out.println("Enter second number");
+            double num2 = Double.parseDouble(scanner.nextLine());
+
+            switch (operation) {
+                case "+": {
+                    System.out.println(num1 + " + " + num2 + " = " + (num1 + num2));
+                    break;
+                }
+                case "-": {
+                    System.out.println(num1 + " - " + num2 + " = " + (num1 - num2));
+                    break;
+                }
+                case "/": {
+                    if (num2 != 0) {
+                        System.out.println(num1 + " / " + num2 + " = " + (num1 / num2));
+                    } else {
+                        System.out.println("Division by zero is not allowed.");
+                    }
+                    break;
+                }
+                case "*": {
+                    System.out.println(num1 + " * " + num2 + " = " + (num1 * num2));
+                    break;
+                }
+                default: {
+                    System.out.println("Invalid operation");
+                }
+            }
+        }
+        scanner.close();  // Close the scanner after the loop
     }
+
+
+
+
+
+
+
+
 
 
 
@@ -654,28 +769,10 @@ public class _LittleTasks extends Base {
     }
 
     public void findSumOfDigits() {
-        int a = -5;
-        int b = 17;
-        a = a + b;
-        b = a - b;
-        a = a - b ;
-
-//        a = a * b;  // a = 2 b = 3  --> a = 6
-//        b = a / b;  // b = 6/3=2
-//        a = a / b ; // a = 6/2=3
 
 
-        System.out.println("a : " + a + "  b : " + b);
 
     }
-
-
-
-
-
-
-
-
 
 
 }

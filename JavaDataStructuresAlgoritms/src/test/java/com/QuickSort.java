@@ -36,6 +36,10 @@ public class QuickSort {
         return i + 1; // Возвращаем индекс опорного элемента
     }
 
+
+
+
+
     // Метод для обмена местами двух элементов массива
     private static void swap(int[] arr, int i, int j) {
         int temp = arr[i];
@@ -46,7 +50,9 @@ public class QuickSort {
     // Основной метод для тестирования алгоритма Быстрой сортировки
     public static void main(String[] args) {
         // Пример массива для сортировки
-        int[] arr = {10, 80, 30, 90, 40, 50, 70};
+        int[] arr = {65, 80, 30, 90, 40, 50, 10,60};
+//        int[] arr = {1,5,3,4,2};
+
 
         // Вызов метода Быстрой сортировки
         quickSort(arr, 0, arr.length - 1);
