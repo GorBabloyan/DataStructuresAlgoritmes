@@ -682,17 +682,17 @@ public class _LittleTasks extends Base {
         simpleScanner();
     }
 
-    public static void main(String[] args) {
-//        Scanner scanner = new Scanner(System.in);
-//        System.out.println("Please enter something:");
+//    public static void main(String[] args) {
+////        Scanner scanner = new Scanner(System.in);
+////        System.out.println("Please enter something:");
+////
+////        String input = scanner.nextLine();
+////        System.out.println("You entered: " + input);
+////
+////        scanner.close();
+//        simpleCalculator();
 //
-//        String input = scanner.nextLine();
-//        System.out.println("You entered: " + input);
-//
-//        scanner.close();
-        simpleCalculator();
-
-    }
+//    }
 
     public void simpleScanner() {
         Scanner scanner = new Scanner(System.in);
@@ -950,39 +950,72 @@ public class _LittleTasks extends Base {
     //Find sum of first N natural numbers (34)
     @Test
     public void sumOfNaturalNumbersRun() {
-
+        int num = 10;
+        System.out.println("Sum of N natural numbers is equal: " + sumOfNaturalNumbers(num));
 
     }
 
-    public void sumOfNaturalNumbers(int n) {
+    public int sumOfNaturalNumbers(int num) {
 
+        int sum = num*(num+1)/2;
+        return sum;
 
     }
 
 
     //Implement a simple login system (35)
-    @Test
-    public void simpleLoginSystemRun() {
+    public static void main(String[] args) {
+        int attempt = 1;
+        while (attempt<4){
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Please Enter your Username: ");
+            String userName = scanner.nextLine();
+            System.out.println("Please Enter your Password: ");
+            String password = scanner.nextLine();
 
+            if (simpleLoginSystem(userName,password)){
+                System.out.println("Dear : " + userName + " Welcome back to your account");
+                break;
+            }else{
+                if (attempt==3){
+                    System.out.println("UserName or Password is incorrect Your account is blocked");
+                }else {
+                    System.out.println("UserName or Password is incorrect Please try again Max attempt = 3 your attempt " + attempt);
+                }
+            }
+            attempt++;
+        }
     }
 
-    public int simpleLoginSystem(int n) {
+    public static boolean simpleLoginSystem(String username, String password) {
+        boolean isLogin;
 
-        return -Integer.parseInt(RandomStringUtils.randomNumeric(n));
+        if (username.equals("Gor")&&password.equals("Test123456")){
+            isLogin=true;
+        }else{
+            isLogin=false;
+        }
 
+
+        return  isLogin;
     }
 
 
     //Check if string contains another string (36)
     @Test
     public void stringContainsOtherStringRun() {
+        String str = "Hello World";
+        String strContains = "World";
 
+        System.out.println("String '" + str + "' contains '" + strContains + "' is " + stringContainsOtherString(str, strContains));
     }
 
-    public int stringContainsOtherString(int n) {
-
-        return -Integer.parseInt(RandomStringUtils.randomNumeric(n));
-
+    public boolean stringContainsOtherString(String str, String strContain) {
+        if (str.contains(strContain)){
+            return true;
+        }else {
+            return false;
+        }
     }
 
 
@@ -997,6 +1030,8 @@ public class _LittleTasks extends Base {
         return -Integer.parseInt(RandomStringUtils.randomNumeric(n));
 
     }
+
+
 
     //Bubble sort (38)
     @Test
