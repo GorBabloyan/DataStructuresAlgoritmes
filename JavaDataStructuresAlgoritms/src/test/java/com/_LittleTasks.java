@@ -160,7 +160,7 @@ public class _LittleTasks extends Base {
         StringBuilder stringBuilderVowels = new StringBuilder(src);
 
         for (char c : stringBuilderVowels.toString().toLowerCase().toCharArray()) {
-            if ("aeiou" .contains(Character.toString(c))) {
+            if ("aeiou".contains(Character.toString(c))) {
                 vowels++;
                 System.out.println(c + " Is vowel");
             } else {
@@ -938,10 +938,10 @@ public class _LittleTasks extends Base {
 //        }
 
         boolean isLeap;
-        if ((year%4==0&&year%100!=0)||(year%400==0)){
-            isLeap=true;
-        }else {
-            isLeap=false;
+        if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
+            isLeap = true;
+        } else {
+            isLeap = false;
         }
 
         return isLeap;
@@ -958,7 +958,7 @@ public class _LittleTasks extends Base {
 
     public int sumOfNaturalNumbers(int num) {
 
-        int sum = num*(num+1)/2;
+        int sum = num * (num + 1) / 2;
         return sum;
 
     }
@@ -967,20 +967,20 @@ public class _LittleTasks extends Base {
     //Implement a simple login system (35)
     public static void main(String[] args) {
         int attempt = 1;
-        while (attempt<4){
+        while (attempt < 4) {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Please Enter your Username: ");
             String userName = scanner.nextLine();
             System.out.println("Please Enter your Password: ");
             String password = scanner.nextLine();
 
-            if (simpleLoginSystem(userName,password)){
+            if (simpleLoginSystem(userName, password)) {
                 System.out.println("Dear : " + userName + " Welcome back to your account");
                 break;
-            }else{
-                if (attempt==3){
+            } else {
+                if (attempt == 3) {
                     System.out.println("UserName or Password is incorrect Your account is blocked");
-                }else {
+                } else {
                     System.out.println("UserName or Password is incorrect Please try again Max attempt = 3 your attempt " + attempt);
                 }
             }
@@ -991,14 +991,14 @@ public class _LittleTasks extends Base {
     public static boolean simpleLoginSystem(String username, String password) {
         boolean isLogin;
 
-        if (username.equals("Gor")&&password.equals("Test123456")){
-            isLogin=true;
-        }else{
-            isLogin=false;
+        if (username.equals("Gor") && password.equals("Test123456")) {
+            isLogin = true;
+        } else {
+            isLogin = false;
         }
 
 
-        return  isLogin;
+        return isLogin;
     }
 
 
@@ -1012,9 +1012,9 @@ public class _LittleTasks extends Base {
     }
 
     public boolean stringContainsOtherString(String str, String strContain) {
-        if (str.contains(strContain)){
+        if (str.contains(strContain)) {
             return true;
-        }else {
+        } else {
             return false;
         }
     }
@@ -1024,27 +1024,77 @@ public class _LittleTasks extends Base {
     @Test
     public void maxOccurringCharRun() {
 
-    }
-
-    public int maxOccurringChar(int n) {
-
-        return -Integer.parseInt(RandomStringUtils.randomNumeric(n));
+        String str = "automationto";
+        System.out.println("Max occuring char: " + maxOccurringChar(str));
 
     }
 
+    public char maxOccurringChar(String str) {
+        char[] ch = str.toCharArray();
+        Set<Character> set = new HashSet<>();
+        for (char c : ch) {
+            set.add(c);
+        }
+        int maxCount = 0;
+        char maxCharacter = 0;
+
+        for (char sc : set) {
+            int count = 0;
+
+            for (int j = 0; j < ch.length; j++) {
+                if (sc == ch[j]) {
+                    count++;
+                }
+            }
+            if (count > maxCount) {
+                maxCount = count;
+                maxCharacter = sc;
+            }
+        }
+        return maxCharacter;
+    }
 
 
     //Bubble sort (38)
     @Test
     public void bubbleSortRun() {
+        int[] arr = {64, 34, 25, 12, 22, 11, 90};
+        System.out.println(Arrays.toString(bubbleSort(arr)));
+    }
+
+    public int[] bubbleSort(int[] arr) {
+
+        int n = arr.length;
+
+        for (int i=0;i<n-1;i++){
+            boolean swapped = false;
+            for (int j =0; j< n-i-1;j++){
+                if (arr[j]>arr[j+1]){
+                    int temp = arr[j];
+                    arr[j] = arr[j+1];
+                    arr[j+1] =temp;
+                    swapped = true;
+                }
+            }
+            if (!swapped){
+                System.out.println(i );
+                break;
+            }
+        }
+        return arr;
+    }
+
+
+    //Selection sort (38)
+    @Test
+    public void selectionSortRun() {
 
     }
 
-    public int bubbleSort(int n) {
+    public int selectionSort(int n) {
 
         return -Integer.parseInt(RandomStringUtils.randomNumeric(n));
 
     }
-
 
 }
