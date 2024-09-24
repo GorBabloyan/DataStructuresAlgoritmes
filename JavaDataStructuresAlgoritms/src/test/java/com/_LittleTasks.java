@@ -122,6 +122,7 @@ public class _LittleTasks extends Base {
 
 
     // Prime number check  (input num1, num2, n -> fibonacci length )
+    // A prime number is a natural number greater than 1 that has no divisors other than 1 and itself
 
     @Test
     public void isPrimeNumberRun() {
