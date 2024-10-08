@@ -14,6 +14,11 @@ public class _LittleTasks extends Base {
     public void reverseStringRun() {
         String needBeReversed = "Automation";
 
+        List<Integer> test = new ArrayList();
+        int[] a = new int[5];
+        Arrays.sort(a);
+        Collections.sort(test);
+
         System.out.println(reverseString(needBeReversed));
         System.out.println(reverseStringShort(needBeReversed));
     }
@@ -1262,6 +1267,32 @@ public class _LittleTasks extends Base {
             array[k++] = right[j++];
         }
     }
+
+
+
+
+
+    public void testLists(){
+        List<Integer> arrList = new ArrayList<>();
+        List<Integer> linkedArrList = new LinkedList<>();
+        List<Integer> vectorList = new Vector<>();
+        List<Integer> stackList = new Stack<>();
+
+        Set<Integer> hashSet = new HashSet<Integer>();
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
 
 
 
