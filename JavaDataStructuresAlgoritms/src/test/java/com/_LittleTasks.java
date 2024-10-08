@@ -14,6 +14,11 @@ public class _LittleTasks extends Base {
     public void reverseStringRun() {
         String needBeReversed = "Automation";
 
+        List<Integer> test = new ArrayList();
+        int[] a = new int[5];
+        Arrays.sort(a);
+        Collections.sort(test);
+
         System.out.println(reverseString(needBeReversed));
         System.out.println(reverseStringShort(needBeReversed));
     }
@@ -281,7 +286,8 @@ public class _LittleTasks extends Base {
     }
 
 
-    //check number is Armstrong ( input  num ) Example num = 153 (1-3 + 5-3 + 3-3 = 153)An Armstrong number is a number that is equal to the sum of its own digits each raised to the power of the number of digits.
+    //check number is Armstrong ( input  num ) Example num = 153 (1-3 + 5-3 + 3-3 = 153)An Armstrong number is a number that is equal to the sum of its own
+    // digits each raised to the power of the number of digits.
 
     @Test
     public void isArmstrongRun() {
@@ -1055,46 +1061,240 @@ public class _LittleTasks extends Base {
     }
 
 
-    //Bubble sort (38)
+    //Bubble sort (38)  O(n²) in the average and worst cases, but O(n) in the best case
     @Test
     public void bubbleSortRun() {
         int[] arr = {64, 34, 25, 12, 22, 11, 90};
         System.out.println(Arrays.toString(bubbleSort(arr)));
     }
 
+
+
+//    public int[] bubbleSort(int[] arr) {
+//        int n = arr.length;
+//
+//        for (int i=0;i<n-1;i++){
+//            boolean isSwapped = false;
+//            for (int j=0;j<n-i-1;j++){
+//                if (arr[j]>arr[j+1]){
+//                    int temp = arr[j];
+//                    arr[j] = arr[j+1];
+//                    arr[j+1] = temp;
+//                    isSwapped = true;
+//                }
+//            }
+//            if (!isSwapped){
+//                break;
+//            }
+//        }
+//        return arr;
+//    }
+
     public int[] bubbleSort(int[] arr) {
+       int n = arr.length;
+       for (int i=0; i<n-1;i++){
+           boolean isSwapped = false;
+           for (int j=0; j<n-i-1;j++){
+               if (arr[j]>arr[j+1]){
+                   int temp = arr[j];
+                   arr[j] = arr[j+1];
+                   arr[j+1] = temp;
+                   isSwapped = true;
+               }
+           }
+           if (!isSwapped){
+               break;
+           }
+       }
+       return arr;
+    }
 
+
+
+
+    //Selection sort (38) O(n²) for all cases (best, average, and worst).
+    @Test
+    public void selectionSortRun() {
+        int[] arr = {64, 34, 25, 12, 22, 11, 90};
+        System.out.println(Arrays.toString(selectionSort2(arr)));
+    }
+
+    public int[] selectionSort(int[] arr) {
         int n = arr.length;
-
-        for (int i=0;i<n-1;i++){
-            boolean swapped = false;
-            for (int j =0; j< n-i-1;j++){
-                if (arr[j]>arr[j+1]){
-                    int temp = arr[j];
-                    arr[j] = arr[j+1];
-                    arr[j+1] =temp;
-                    swapped = true;
+        // Traverse through all array elements
+        for (int i = 0; i < n - 1; i++) {
+            // Find the minimum element in the unsorted part of the array
+            int minIndex = i;
+            for (int j = i + 1; j < n; j++) {
+                if (arr[j] < arr[minIndex]) {
+                    minIndex = j; // Update index of the minimum element
                 }
             }
-            if (!swapped){
-                System.out.println(i );
-                break;
-            }
+            // Swap the found minimum element with the first element of the unsorted part
+            int temp = arr[minIndex];
+            arr[minIndex] = arr[i];
+            arr[i] = temp;
         }
         return arr;
     }
 
+    public int[] selectionSort2(int[] arr) {
+        int n = arr.length;
+        for (int i=0; i<n-1; i++){
+            int minIndex = i;
+            for (int j=i+1; j<n; j++){
+                if (arr[j]<arr[minIndex]){
+                    minIndex = j;
+                }
+            }
+            int temp = arr[i];
+            arr[i] = arr[minIndex];
+            arr[minIndex] = temp;
+        }
+      return arr;
+    }
 
-    //Selection sort (38)
+
+
+    //Quick sort (38) O(n²) for all cases (best, average, and worst).
     @Test
-    public void selectionSortRun() {
+    public void quickSortRun() {
+        int[] arr = {64, 34, 25, 12, 22, 11, 90};
+        System.out.println(Arrays.toString(arr));
+        quickSort(arr,0,arr.length-1);
+        System.out.println(Arrays.toString(arr));
+    }
+
+    public  void quickSort(int[] arr, int low, int high) {
+        if (low < high) {
+            // Find the pivot index
+            int pivotIndex = partition(arr, low, high);
+//            Arrays.sort(arr);
+
+            // Recursively sort elements before and after partition
+            quickSort(arr, low, pivotIndex - 1);
+            quickSort(arr, pivotIndex + 1, high);
+        }
+    }
+
+    // Partition method to place the pivot in its correct position
+    public static int partition(int[] arr, int low, int high) {
+        int pivot = arr[high];  // Choosing the rightmost element as the pivot
+        int i = (low - 1);      // Index of the smaller element
+
+        for (int j = low; j < high; j++) {
+            // If current element is smaller than or equal to pivot
+            if (arr[j] <= pivot) {
+                i++;
+                // Swap arr[i] and arr[j]
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+
+        // Swap arr[i+1] and arr[high] (or pivot)
+        int temp = arr[i + 1];
+        arr[i + 1] = arr[high];
+        arr[high] = temp;
+        return i + 1;  // Return the partition index
+    }
+
+
+
+//      Arrays.sort() for arrays
+//      Collections.sort() for collections like List
+
+//      These methods internally use much more efficient algorithms like Timsort, which is a hybrid sorting algorithm derived from Merge Sort and Insertion Sort.
+//      Merge Sort is a divide and conquer algorithm with a time complexity of O(n log n), making it much more efficient for large datasets.
+//      Insertion Sort works well for small or nearly sorted arrays and has a time complexity of O(n²) in the average and worst cases but O(n) in the best case (already sorted).
+
+    // Function that sorts an array using Insertion Sort
+    public static void insertionSort(int[] array) {
+        for (int i = 1; i < array.length; i++) {
+            int key = array[i];
+            int j = i - 1;
+
+            // Move elements of array[0..i-1] that are greater than the key to one position ahead
+            while (j >= 0 && array[j] > key) {
+                array[j + 1] = array[j];
+                j--;
+            }
+            // Insert the key at the correct position
+            array[j + 1] = key;
+        }
+    }
+
+
+
+    // Main function that sorts the array using Merge Sort
+    public static void mergeSort(int[] array) {
+        if (array.length < 2) {
+            return; // Base case: if the array has less than 2 elements, it's already sorted
+        }
+
+        int mid = array.length / 2; // Find the middle point to divide the array
+        int[] left = Arrays.copyOfRange(array, 0, mid); // Left half
+        int[] right = Arrays.copyOfRange(array, mid, array.length); // Right half
+
+        // Recursively split and sort both halves
+        mergeSort(left);
+        mergeSort(right);
+
+        // Merge the sorted halves
+        merge(array, left, right);
+    }
+
+    // Merge two sorted sub-arrays into one sorted array
+    private static void merge(int[] array, int[] left, int[] right) {
+        int i = 0, j = 0, k = 0;
+
+        // Compare elements from both halves and place them into the main array in order
+        while (i < left.length && j < right.length) {
+            if (left[i] <= right[j]) {
+                array[k++] = left[i++];
+            } else {
+                array[k++] = right[j++];
+            }
+        }
+
+        // Copy remaining elements from the left array, if any
+        while (i < left.length) {
+            array[k++] = left[i++];
+        }
+
+        // Copy remaining elements from the right array, if any
+        while (j < right.length) {
+            array[k++] = right[j++];
+        }
+    }
+
+
+
+
+
+    public void testLists(){
+        List<Integer> arrList = new ArrayList<>();
+        List<Integer> linkedArrList = new LinkedList<>();
+        List<Integer> vectorList = new Vector<>();
+        List<Integer> stackList = new Stack<>();
+
+        Set<Integer> hashSet = new HashSet<Integer>();
+
+
+
 
     }
 
-    public int selectionSort(int n) {
 
-        return -Integer.parseInt(RandomStringUtils.randomNumeric(n));
 
-    }
+
+
+
+
+
+
+
+
 
 }
