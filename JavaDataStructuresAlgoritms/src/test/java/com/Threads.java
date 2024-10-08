@@ -8,6 +8,8 @@ public class Threads {
     volatile int a = 0;
 //    synchronized int b = 0;
 
+
+
     @Test
     public void testThreadRunnable() {
         Runnable task1 = () -> {
